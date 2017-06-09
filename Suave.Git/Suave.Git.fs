@@ -15,8 +15,6 @@ open Suave.Writers
 open Suave.Web
 
 
-// IMPORTANT CONFIG
-// git config --local receive.denyCurrentBranch updateInstead
 
 // ** Service
 
