@@ -6,8 +6,6 @@ Serve git repositories (bare & non-bare) via HTTP from (Suave)[http://suave.io].
 
 ```{.fsharp}
 
-
-
 ```
 
 # Configuration

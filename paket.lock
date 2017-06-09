@@ -1,5 +1,13 @@
 NUGET
   remote: https://www.nuget.org/api/v2
+    Argu (3.7)
+      FSharp.Core (>= 4.0.1.7-alpha) - restriction: >= netstandard16
+      NETStandard.Library (>= 1.6) - restriction: >= netstandard16
+      System.Xml.XDocument (>= 4.0.11) - restriction: >= netstandard16
+    Expecto (4.2.1)
+      Argu (>= 3.7)
+      FSharp.Core (>= 4.1.12)
+      Mono.Cecil (>= 0.9.6.4)
     FAKE (4.61.3)
     FSharp.Core (4.2.1)
       System.Collections (>= 4.0.11) - restriction: >= netstandard16
@@ -40,6 +48,7 @@ NUGET
       System.Runtime.Extensions (>= 4.3) - restriction: && (< net46) (>= netstandard13)
       System.Runtime.Handles (>= 4.3) - restriction: && (< net46) (>= netstandard13)
       System.Runtime.InteropServices (>= 4.3) - restriction: && (< net46) (>= netstandard13)
+    Mono.Cecil (0.9.6.4)
     NETStandard.Library (1.6.1) - restriction: >= netstandard16
       Microsoft.NETCore.Platforms (>= 1.1) - restriction: >= netstandard10
       Microsoft.Win32.Primitives (>= 4.3) - restriction: >= netstandard13

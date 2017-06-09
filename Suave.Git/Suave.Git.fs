@@ -1,5 +1,7 @@
 module Suave.Git
 
+// * Imports
+
 open System
 open System.IO
 open System.Text
@@ -14,15 +16,13 @@ open Suave.Successful
 open Suave.Writers
 open Suave.Web
 
-
-
-// ** Service
+// * Service
 
 type private Service =
   | UploadPack
   | ReceivePack
 
-  // *** Parse
+  // ** Parse
 
   static member Parse = function
     | "upload-pack"
@@ -31,14 +31,14 @@ type private Service =
     | "git-receive-pack" -> ReceivePack
     | other -> failwithf "unrecognized service: %s" other
 
-  // *** ToString
+  // ** ToString
 
   override self.ToString() =
     match self with
     | UploadPack  -> "upload-pack"
     | ReceivePack -> "receive-pack"
 
-// ** (^^)
+// * (^^)
 
 let rec private (^^) (lst: (string * string option) list) name =
   match lst with
@@ -46,12 +46,12 @@ let rec private (^^) (lst: (string * string option) list) name =
   | (hdk, v) :: _ when hdk = name -> v
   | _ :: rest -> rest ^^ name
 
-// ** join
+// * join
 
 let private join sep (strings: seq<string>)=
   String.Join(sep, strings)
 
-// ** getAdvertisement
+// * getAdvertisement
 
 let private getAdvertisement path (srvc: Service) =
   use proc = new Process()
@@ -75,7 +75,7 @@ let private getAdvertisement path (srvc: Service) =
     proc.StandardError.ReadToEnd()
     |> failwithf "Error: %s"
 
-// ** postData
+// * postData
 
 let private postData path srvc (data: byte array) =
   use proc = new Process()
@@ -120,7 +120,7 @@ let private postData path srvc (data: byte array) =
     proc.StandardError.ReadToEnd()
     |> failwithf "Error: %s"
 
-// ** makePacketHeader
+// * makePacketHeader
 
 let private makePacketHeader (cmd: string) =
   let hexchars = "0123456789abcdef"
@@ -136,19 +136,19 @@ let private makePacketHeader (cmd: string) =
   |> Array.iter (builder.Append >> ignore)
   string builder
 
-// ** makePacket
+// * makePacket
 
 let private makePacket (cmd: Service) =
   let packet = String.Format("# service=git-{0}\n", string cmd)
   let header = makePacketHeader packet
   String.Format("{0}{1}0000", header, packet)
 
-// ** makeContentType
+// * makeContentType
 
 let private makeContentType (noun: string) (cmd: Service) =
   String.Format("application/x-git-{0}-{1}", string cmd, noun)
 
-// ** makeHttpHeaders
+// * makeHttpHeaders
 
 let private makeHttpHeaders (contentType: string) =
   setHeader "Cache-Control" "no-cache, no-store, max-age=0, must-revalidate"
@@ -157,11 +157,11 @@ let private makeHttpHeaders (contentType: string) =
   >=> setHeader "Expires" "Fri, 01 Jan 1980 00:00:00 GMT"
   >=> setHeader "Content-Type" contentType
 
-// ** parseService
+// * parseService
 
 let private parseService q = q ^^ "service" |> Option.map Service.Parse
 
-// ** getData
+// * getData
 
 let private getData path (cmd: Service) =
   let result = getAdvertisement path cmd
@@ -178,14 +178,14 @@ let private getData path (cmd: Service) =
 
   headers >=> OK (string body)
 
-// ** handleGetRequest
+// * handleGetRequest
 
 let private handleGetRequest path (req: HttpRequest) =
   match req.query |> parseService with
   | Some cmd -> getData path cmd
   | None -> RequestErrors.FORBIDDEN "missing or malformed git service request"
 
-// ** handlePostRequest
+// * handlePostRequest
 
 let private handlePostRequest path (cmd: Service) (req: HttpRequest) =
   let result = postData path cmd req.rawForm
@@ -195,25 +195,25 @@ let private handlePostRequest path (cmd: Service) (req: HttpRequest) =
     |> makeHttpHeaders
   headers >=> ok result
 
-// ** uploadPack
+// * uploadPack
 
 let private uploadPack path  =
   UploadPack
   |> handlePostRequest path
   |> request
 
-// ** receivePack
+// * receivePack
 
 let private receivePack path  =
   ReceivePack
   |> handlePostRequest path
   |> request
 
-// ** get
+// * get
 
 let private get path = path |> handleGetRequest |> request
 
-// ** route
+// * route
 
 let private route (name: string option) path =
   match name with
@@ -221,7 +221,7 @@ let private route (name: string option) path =
   | Some name -> String.Format("/{0}{1}", name, path)
   | None      -> path
 
-// ** gitServer
+// * gitServer
 
 let gitServer (basepath: string option) (gitfolder: string) =
   choose [
