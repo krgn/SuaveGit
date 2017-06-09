@@ -1,8 +1,8 @@
 # Suave.Git
 
 Serve git repositories (bare & non-bare) via HTTP from
-(Suave)[http://suave.io]. These routes implement the (Smart HTTP
-Protocol)[https://github.com/git/git/blob/master/Documentation/technical/http-protocol.txt]. 
+[Suave](http://suave.io). These routes implement the [Smart HTTP
+Protocol](https://github.com/git/git/blob/master/Documentation/technical/http-protocol.txt). 
 
 The following operations are known to work:
 
