@@ -58,12 +58,16 @@ use server = createServer()
 
 Once running, you can use the regular commands to add remotes and clone. 
 
+```shell
+git clone http://localhost:7000/myproject myclone
+```
+
 # Configuration
 
 If you intend to serve _non-bare_ repositories, make sure you set this
 option on the repository to ensure `git push` will also update your
 currently checked out branch.
 
-```
+```shell
 git config --local receive.denyCurrentBranch updateInstead
 ```
