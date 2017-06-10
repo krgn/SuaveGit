@@ -15,7 +15,7 @@ The following operations are known to work:
 
 A short example how this API is used:
 
-```{.fsharp}
+```fsharp
 
 let dir = "/home/k/projects"
 let name = "myproject"  // the directory containing .git (non-bare) or a bare repository
