@@ -1,0 +1,13 @@
+type file
+id Suave.Git
+version 1.0
+authors Karsten Gebbert
+projectUrl https://github.com/krgn/SuaveGit
+description
+    Suave WebParts (routes) for serving git repositories.
+files
+    ../build/Suave.Git.dll ==> lib
+    bin/Debug/Suave.Git.XML ==> lib
+dependencies
+    FSharp.Core ~> LOCKEDVERSION
+    Suave ~> LOCKEDVERSION
