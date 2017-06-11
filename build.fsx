@@ -5,8 +5,8 @@ open Fake
 open System
 
 // Directories
-let buildDir  = "./build/"
-let deployDir = "./deploy/"
+let buildDir  = __SOURCE_DIRECTORY__ @@ "build"
+let deployDir = __SOURCE_DIRECTORY__ @@ "deploy"
 
 
 // Filesets
@@ -34,8 +34,9 @@ Target "Build" (fun _ ->
 
 Target "Test" (fun _ ->
     ExecProcess (fun info ->
-                    info.FileName <- "Suave.Git.Tests.exe"
+                    info.FileName <- buildDir @@ "Suave.Git.Tests.exe"
                     info.UseShellExecute <- false
+                    info.CreateNoWindow <- false
                     info.WorkingDirectory <- buildDir)
                 TimeSpan.MaxValue
     |> maybeFail
