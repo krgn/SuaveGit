@@ -18,7 +18,7 @@ open System.Threading
 open System.Diagnostics
 
 [<Literal>]
-let PORT = 12345us
+let PORT = 5000us
 
 type IRepo =
   inherit IDisposable
@@ -88,7 +88,7 @@ let openRepo basedir name =
         with get () = path
 
       member self.Url
-        with get () = sprintf "http://127.0.0.1:%d/%s" PORT name
+        with get () = sprintf "http://localhost:%d/%s" PORT name
 
       member self.Commit(msg: string) =
         Path.Combine(basedir, name)
@@ -171,6 +171,8 @@ let cloneWorks =
 
     use original = createRepo basedir name
     use server = createServer basedir name
+
+    Thread.Sleep(1000)
 
     original.WriteFile (Path.GetRandomFileName()) "hello"
     original.StageAll()
