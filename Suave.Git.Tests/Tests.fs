@@ -88,7 +88,7 @@ let openRepo basedir name =
         with get () = path
 
       member self.Url
-        with get () = sprintf "http://localhost:%d/%s" PORT name
+        with get () = sprintf "http://127.0.0.1:%d/%s" PORT name
 
       member self.Commit(msg: string) =
         Path.Combine(basedir, name)
