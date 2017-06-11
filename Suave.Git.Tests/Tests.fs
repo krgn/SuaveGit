@@ -18,7 +18,7 @@ open System.Threading
 open System.Diagnostics
 
 [<Literal>]
-let PORT = 5000us
+let PORT = 12345us
 
 type IRepo =
   inherit IDisposable
