@@ -15,6 +15,7 @@ The following operations are known to work:
 
 | Platform   | Status         |
 | --------   | -------------- |
+| Windows    | [![Build status](https://ci.appveyor.com/api/projects/status/4ftgdgx0ujmb5f2j?svg=true)](https://travis-ci.org/SuaveIO/suave) |
 | Mono/Linux | [![Build status](https://travis-ci.org/krgn/SuaveGit.svg?branch=master)](https://travis-ci.org/SuaveIO/suave) |
 
 ## Example
