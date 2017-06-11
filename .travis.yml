@@ -1,0 +1,8 @@
+language: csharp
+install:
+  - sudo apt-get install -y git make
+script:    
+  - make paket.restore
+  - make test
+mono:
+  - latest

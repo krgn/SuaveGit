@@ -11,6 +11,12 @@ The following operations are known to work:
 - `git clone`
 - `git ls-remote`
 
+## Build Status
+
+| Platform   | Status         |
+| --------   | -------------- |
+| Mono/Linux | [![Build status](https://travis-ci.org/krgn/SuaveGit.svg?branch=master)](https://travis-ci.org/SuaveIO/suave) |
+
 # Example
 
 A short example how this API is used:
