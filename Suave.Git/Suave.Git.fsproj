@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Suave.Git</RootNamespace>
     <AssemblyName>Suave.Git</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
     <Name>Suave.Git</Name>
