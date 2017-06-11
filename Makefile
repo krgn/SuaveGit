@@ -4,7 +4,10 @@ all:
 test:
 	@./build.sh Test
 
-paket.restore:
+paket.exe:
+	@mono .paket/paket.bootstrapper.exe
+
+paket.restore: paket.exe
 	@mono .paket/paket.exe restore
 
 paket.pack:

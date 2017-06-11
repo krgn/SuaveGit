@@ -17,7 +17,7 @@ The following operations are known to work:
 | --------   | -------------- |
 | Mono/Linux | [![Build status](https://travis-ci.org/krgn/SuaveGit.svg?branch=master)](https://travis-ci.org/SuaveIO/suave) |
 
-# Example
+## Example
 
 A short example how this API is used:
 
@@ -68,7 +68,7 @@ Once running, you can use the regular commands to add remotes and clone.
 git clone http://localhost:7000/myproject myclone
 ```
 
-# Configuration
+## Repository Configuration
 
 If you intend to serve _non-bare_ repositories, make sure you set this
 option on the repository to ensure `git push` will also update your
