@@ -7,4 +7,4 @@ script:
   - make paket.restore
   - make test
 mono:
-  - 4.8.0
+  - latest
