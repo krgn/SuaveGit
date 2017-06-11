@@ -67,11 +67,12 @@ let runGit subcmd options workDir =
   else failwith "Could not start git"
 
 let deleteRepo basedir name =
-  try
-    Directory.Delete(Path.Combine(basedir,name), true)
-  with
-    | :? DirectoryNotFoundException ->
-      printfn "%s/%s was not found" basedir name
+  ()
+  // try
+  //   Directory.Delete(Path.Combine(basedir,name), true)
+  // with
+  //   | :? DirectoryNotFoundException ->
+  //     printfn "%s/%s was not found" basedir name
 
 let setConfig basedir name =
   let options = "--local receive.denyCurrentBranch updateInstead"
