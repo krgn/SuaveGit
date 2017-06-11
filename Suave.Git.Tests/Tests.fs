@@ -155,7 +155,7 @@ let createServer basedir name =
 
   // on very slow machines (AppVeyor) it sometimes takes
   // around 100ms, so we wait a little to make sure the server is up
-  Thread.Sleep(150)
+  Thread.Sleep(1000)
 
   { new IDisposable with
       member self.Dispose() =
@@ -171,8 +171,6 @@ let cloneWorks =
 
     use original = createRepo basedir name
     use server = createServer basedir name
-
-    Thread.Sleep(1000)
 
     original.WriteFile (Path.GetRandomFileName()) "hello"
     original.StageAll()
