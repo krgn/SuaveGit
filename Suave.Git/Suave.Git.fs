@@ -223,6 +223,21 @@ let private route (name: string option) path =
 
 // * gitServer
 
+/// <summary> Generate a WebPart to serve git repositories.  </summary> <param name="basepath">
+/// Optionally specify a namespace to serve the git repository under . For instance, given
+/// <c>Some("myproject")</c> and served from localhost on port 5000, the resulting routes would be
+/// <code>
+///   GET  http//localhost:5000/myproject/info/refs
+///   POST http//localhost:5000/myproject/git-upload-pack
+///   POST http//localhost:5000/myproject/git-receive-pack
+///</code>
+///</param>
+/// <param name="gitfolder">
+///   Absolute path to the git repository, bare or non-bare, to be served.
+/// </param>
+/// <returns>
+///  WebPart<HttpContext>
+///</returns>
 let gitServer (basepath: string option) (gitfolder: string) =
   choose [
       Filters.path (route basepath "/info/refs") >=> Filters.GET >=> get gitfolder
